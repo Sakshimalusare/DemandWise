@@ -1,0 +1,24 @@
+@app.route('/api/heatmap', methods=['POST'])
+def generate_heatmap():
+    data = request.json
+    city = data.get('city')
+    product = data.get('product')
+
+    df = monthly_df.copy()
+    if city:
+        df = df[df['City'] == city]
+    if product:
+        df = df[df['Product Name'] == product]
+
+    pivot = df.pivot_table(index='City', columns='Product Name', values='yhat', aggfunc='mean')
+
+    plt.figure(figsize=(10, 6))
+    sns.heatmap(pivot, annot=True, fmt=".0f", cmap="YlOrBr")
+    plt.title("Forecasted Monthly Demand Heatmap")
+    plt.tight_layout()
+
+    output_path = os.path.join("static", "heatmap.png")
+    plt.savefig(output_path)
+    plt.close()
+
+    return send_file(output_path, mimetype='image/png')

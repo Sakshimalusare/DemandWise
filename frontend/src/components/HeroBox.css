@@ -1,0 +1,25 @@
+.hero-box {
+  width: 70%;
+  padding: 2rem 2rem;
+  background: #f065ad;
+  color: #fff;
+  transition: all 0.4s ease;
+  margin: 2rem auto;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.hero-box:hover {
+  width: 85%;
+  padding: 4rem 2rem;
+  cursor: pointer;
+}
+
+.hero-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero-box p {
+  margin: 0;
+}
