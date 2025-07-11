@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: demandwise-backend
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+    branch: main
+    rootDir: backend
+
+  - type: web
+    name: demandwise-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    branch: main
+    rootDir: frontend
