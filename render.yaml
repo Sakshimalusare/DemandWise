@@ -11,8 +11,9 @@ services:
     branch: main
     rootDir: backend
 
-  - type: static
+  - type: web
     name: demandwise-frontend
+    env: static
     buildCommand: npm install && npm run build
     staticPublishPath: build
     branch: main
